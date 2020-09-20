@@ -1,0 +1,80 @@
+package PilasyColas;
+
+import java.util.Scanner;
+
+public class funGames3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		QueueArray<Character> qOriginal = new QueueArray<>(str.length());
+		QueueArray<Character> qAnswer = new QueueArray<>(str.length());
+		
+		for(int i =0; i<str.length();i++) {
+			Character c = new Character(str.toCharArray()[i]);
+			qOriginal.enqueue(c);
+		}
+		
+		while(!qOriginal.empty()) {
+			char c = qOriginal.dequeue();
+			if(!qAnswer.existChar(c)) {
+				qAnswer.enqueue(c);
+			}else {
+				String s = qAnswer.toString();
+				String copy = s;
+				QueueArray<Character> qSub = new QueueArray<>(str.length());
+				
+				for(int i =0; i<copy.length();i++) {
+					if(copy.toCharArray()[i]!=c) {
+						Character ch = new Character(copy.toCharArray()[i]);
+						qSub.enqueue(ch);
+					}
+				}
+				qSub.enqueue(c);
+				copy=qSub.toString();
+				qAnswer.clear(str.length());
+				
+				if(s.compareTo(copy)<0){
+					for(int i =0; i<s.length();i++) {
+						Character ch = new Character(s.toCharArray()[i]);
+						qAnswer.enqueue(ch);
+					}
+				}else {
+					for(int i =0; i<s.length();i++) {
+						Character ch = new Character(copy.toCharArray()[i]);
+						qAnswer.enqueue(ch);
+						}
+				}
+				
+				/**StringBuilder sb = new StringBuilder(copy);
+				qAnswer.clear(str.length());
+				for(int i=0;i<s.length();i++) {
+					if(copy.charAt(i)==c)
+						sb.deleteCharAt(i);
+				}
+				copy = copy.toString();
+				copy+=c;
+				
+				if(copy.compareTo(s)>=0) {
+					for(int i =0; i<s.length();i++) {
+						Character ch = new Character(s.toCharArray()[i]);
+						qAnswer.enqueue(c);
+					}
+				}else {
+					for(int i =0; i<copy.length();i++) {
+						Character ch = new Character(copy.toCharArray()[i]);
+						qAnswer.enqueue(c);
+					}
+				}**/
+				
+				
+			}
+		}
+		
+		System.out.println(qAnswer.toString());
+
+		
+	}
+
+}

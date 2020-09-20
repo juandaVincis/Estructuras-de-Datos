@@ -1,0 +1,16 @@
+
+
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		int[] m = {0,1,2};
+		StackArray stack = new StackArray(m);
+		
+		System.out.println(stack);
+		
+
+	}
+
+}

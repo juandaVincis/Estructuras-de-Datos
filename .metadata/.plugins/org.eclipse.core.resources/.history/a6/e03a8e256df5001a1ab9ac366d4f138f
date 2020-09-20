@@ -1,0 +1,26 @@
+package PilasyColas;
+import java.nio.charset.Charset;
+import java.util.Scanner;
+
+public class FunGames {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		StackArrayGeneric<String> garray = new StackArrayGeneric<>(str.length());
+		
+		for(int i = 0; i <str.length();i++) {
+			garray.push(new String (null, str.toCharArray()[i]).toString());
+		}
+		
+		while(!garray.empty()) {
+			System.out.println(garray.pop());
+		}
+		
+
+	}
+
+}

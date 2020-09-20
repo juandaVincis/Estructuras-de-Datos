@@ -1,0 +1,54 @@
+package PilasyColas;
+
+public class queuesArray<T> {
+	private int tail=0, head = 0, count = 0, size=0;
+	private T[] qarray;
+	
+	public queuesArray(int n) {
+
+		this.head = 0;
+		this.tail = 0;
+		this.count = 0;
+		this.size=n;
+		this.qarray = (T[]) new Object[size];
+	}
+	
+	public queuesArray() {
+		head = tail = count = 0;
+		qarray = (T[]) new Object[5];
+	}
+	
+	public T dequeue() {
+		T item = null;
+		if(empty())
+		System.out.println("Queue is empty: item not dequeued");
+		else {
+		item = qarray[head];
+		head = (head + 1) % size;
+		count--; 
+		} 
+		return item;
+	}
+	
+	public void enqueue(T item) {
+		if(full())
+		System.out.println("Queue is full: item not enqueued");
+		else {
+		qarray[tail] = item;
+		tail = (tail + 1) % size;
+		count++;
+		} 
+	} 
+	public boolean empty() {
+		return count <= 0;
+	} 
+	public boolean full() {
+		return count >= size;
+	} 
+	public int getCount() {
+		return count;
+	} 
+
+	
+	
+}

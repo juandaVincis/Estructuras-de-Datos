@@ -1,0 +1,23 @@
+import java.util.Scanner;
+import java.util.stream.Stream;
+
+public class main {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+				
+		String numbers = "12 1 890 65";
+		int[] array = Stream.of(numbers.split(" "))
+		                    .mapToInt(token -> Integer.parseInt(token))
+		                    .toArray();
+		StackArray stack = new StackArray(array);
+		System.out.println(array[3]);
+		
+		while(!stack.empty()) {
+			System.out.print(stack.pop() + " ");
+		}
+		
+
+	}
+
+}

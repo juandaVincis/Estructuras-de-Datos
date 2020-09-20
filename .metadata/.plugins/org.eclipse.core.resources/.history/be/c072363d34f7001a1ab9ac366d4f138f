@@ -1,0 +1,53 @@
+package PilasyColas;
+
+import java.util.Scanner;
+
+public class funGames3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		QueueArray<Character> qOriginal = new QueueArray<>(str.length());
+		QueueArray<Character> qAnswer = new QueueArray<>(str.length());
+		
+		while(!qOriginal.empty()) {
+			char c = qOriginal.dequeue();
+			if(!qAnswer.existChar(c)) {
+				qAnswer.enqueue(c);
+			}else {
+				String s = qAnswer.toString();
+				String copy = s;
+				StringBuilder sb = new StringBuilder(copy);
+				qAnswer.clear(str.length());
+				for(int i=0;i<s.length();i++) {
+					if(copy.charAt(i)==c)
+						sb.deleteCharAt(2);
+				}
+				copy+=c;
+				
+				copy = copy.toString();
+				
+				if(copy.compareTo(s)<=0) {
+					for(int i =0; i<s.length();i++) {
+						Character ch = new Character(s.toCharArray()[i]);
+						qOriginal.enqueue(c);
+					}
+				}else {
+					for(int i =0; i<copy.length();i++) {
+						Character ch = new Character(copy.toCharArray()[i]);
+						qOriginal.enqueue(c);
+					}
+				}
+				
+				
+			}
+		}
+		
+		while(!qAnswer.empty()) {
+			System.out.println(qAnswer.toString());
+		}
+		
+	}
+
+}

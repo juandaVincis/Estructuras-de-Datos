@@ -1,0 +1,7 @@
+package PilasyColas;
+
+public class queuesArrays<T> {
+	private int Tail, Head;
+	
+
+}

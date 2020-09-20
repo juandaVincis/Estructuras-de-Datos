@@ -1,0 +1,22 @@
+package PilasyColas;
+
+public class queuesArray<T> {
+	private int tail=0, head = 0, count = 0, size=0;
+	private T[] qarray;
+	
+	public queuesArrays(int n) {
+
+		this.head = 0;
+		this.tail = 0;
+		this.count = 0;
+		this.size=n;
+		this.qarray = (T[]) new Object[size];
+	}
+	
+	public queuesArrays() {
+		head = tail = count = 0;
+		qarray = (T[]) new Object[N];
+		} 
+	
+	
+}

@@ -1,0 +1,49 @@
+package PilasyColas;
+import java.util.Scanner;
+
+public class FunGames {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		QueueArray<Character> qResultado = new QueueArray<>(27);
+		QueueArray<Character> qOriginal = new QueueArray<>(str.length());
+		QueueArray<Character> qSubOriginal = new QueueArray<>(str.length());
+		QueueArray<String> qRespuesta = new QueueArray<>(50);
+		
+		StackArrayGeneric<Character> s = new StackArrayGeneric<>(str.length());
+		
+		int subCheck = 0;
+		
+		for(int i =0; i<str.length();i++) {
+			Character c = new Character(str.toCharArray()[i]);
+			qOriginal.enqueue(c);
+		}
+		
+		while(!qOriginal.empty()) {
+			subCheck++;
+			qSubOriginal.clone(qOriginal);
+			for(int i = 0;i<subCheck;i++) {
+				qSubOriginal.dequeue();
+			}
+			
+			qResultado.enqueue(qOriginal.dequeue());
+			while(!qSubOriginal.empty()) {
+				if(qResultado.existChar(qSubOriginal.peek())) {
+					qSubOriginal.dequeue();
+				}else
+					qResultado.enqueue(qSubOriginal.dequeue());
+			}
+			qRespuesta.enqueue(qResultado.toString());
+			qResultado.clear(27);
+		}
+		System.out.println(qRespuesta.dequeue());
+		System.out.println(qRespuesta.dequeue());
+		System.out.println(qRespuesta.dequeue());
+		System.out.println(qRespuesta.dequeue());
+
+	}
+
+}

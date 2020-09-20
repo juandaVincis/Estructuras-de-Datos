@@ -1,0 +1,17 @@
+import java.util.Scanner;
+
+public class FunGames {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		StackArrayGeneric a = new StackArrayGeneric(5);
+		a.push(5);
+		System.out.println(a.pop());
+
+	}
+
+}

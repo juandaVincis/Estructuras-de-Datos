@@ -1,0 +1,20 @@
+package PilasyColas;
+
+import java.util.Scanner;
+
+public class funGames3 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		QueueArray<Character> qOriginal = new QueueArray<>(str.length());
+		QueueArray<Character> qAnswer = new QueueArray<>(str.length());
+		
+		while(!qOriginal.empty()) {
+			
+		}
+		
+	}
+
+}

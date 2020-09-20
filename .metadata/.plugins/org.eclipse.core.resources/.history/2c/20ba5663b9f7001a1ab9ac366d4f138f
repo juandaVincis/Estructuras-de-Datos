@@ -1,0 +1,25 @@
+package PilasyColas;
+
+import java.util.Scanner;
+
+public class balancedBrackets {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+		int nCasos = sc.nextInt();
+		String brackets = "";
+		
+		for(int i=0;i<nCasos;i++) {
+			brackets= sc.nextLine();
+			
+			for(int j=0;j<brackets.length();j++) {
+				
+			}
+			
+			
+		}
+
+	}
+
+}

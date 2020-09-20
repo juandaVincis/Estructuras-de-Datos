@@ -1,0 +1,66 @@
+package PilasyColas;
+
+import java.util.Scanner;
+
+public class balancedBrackets {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		Scanner sc = new Scanner(System.in);
+
+		int nCasos = Integer.parseInt(sc.nextLine());
+		String brackets = "";
+		QueueArray<Boolean> qAnswer = new QueueArray<>(brackets.length());
+		
+		
+		for(int i=0;i<nCasos;i++) {
+			brackets= sc.nextLine();
+			char cas = ' ';
+			StackArrayGeneric<Character> stack = new StackArrayGeneric<>(brackets.length());
+			
+			for(int j=0;j<brackets.length();j++) {
+				
+				cas = brackets.charAt(i);
+				switch(cas){
+					case '{':
+						stack.push(new Character(cas));
+						break;
+					case '[':
+						stack.push(new Character(cas));
+						break;
+					case '(':
+						stack.push(new Character(cas));
+					case '}':
+						try {
+							Character c = new Character(stack.pop());
+							if(cas!=c) {
+								qAnswer.enqueue(false);
+							}
+						}
+						catch (Exception e) {
+							qAnswer.enqueue(false);
+						}
+					
+				}
+				
+			}
+			try {
+				if(!stack.empty() && qAnswer.peek()!=false ) {
+					qAnswer.enqueue(true);
+				}else if(qAnswer.peek()!=false)
+					qAnswer.enqueue(false);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				qAnswer.enqueue(false);
+			}
+			
+			
+		}
+		
+		while(!qAnswer.empty()) {
+			System.out.println(qAnswer.dequeue());
+		}
+
+	}
+
+}

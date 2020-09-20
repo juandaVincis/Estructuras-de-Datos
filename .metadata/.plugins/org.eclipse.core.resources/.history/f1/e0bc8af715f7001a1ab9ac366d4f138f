@@ -1,0 +1,82 @@
+package PilasyColas;
+
+import java.util.Scanner;
+
+public class funGames2 {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		
+		QueueArray<Character> qOriginal = new QueueArray<>(str.length());
+		QueueArray<Character> qCopy = new QueueArray<>(str.length());
+		QueueArray<Character> qCore = new QueueArray<>(27);
+		QueueArray<Character> qSubq = new QueueArray<>(27);
+		QueueArray<Character> qSubqCopy = new QueueArray<>(27);
+		QueueArray<QueueArray> qAnswer = new QueueArray<>(100);
+		
+		for(int i =0; i<str.length();i++) {
+			Character c = new Character(str.toCharArray()[i]);
+			qOriginal.enqueue(c);
+		}
+		
+		/**qOriginal.enqueue(qOriginal.dequeue());
+		
+		qOriginal.eliminate('a');
+		
+		while(!qOriginal.empty()) {
+			System.out.println(qOriginal.dequeue());
+		}**/
+		
+		qCopy.clone(qOriginal);
+		qAnswer.enqueue(qSubq);
+		qSubq.clone(qCore);
+		
+		while(!qCopy.empty()){
+			if(qCore.existChar(qCopy.peek())){
+				qCopy.dequeue();
+			}else
+				qCore.enqueue(qCopy.dequeue());
+		}
+		
+		qCopy.clone(qOriginal);
+		
+		
+		while(!qOriginal.empty()) {
+			char c = qOriginal.dequeue();
+			int size =qAnswer.getCount();
+			if(!qAnswer.peek().existChar(c)) {
+				for(int i = 0;i<qAnswer.getCount();i++) {
+					QueueArray<Character> qSubqCopy2 = new QueueArray<>(27);
+					qSubqCopy2.clone(qAnswer.dequeue());
+					qSubqCopy2.enqueue(c);
+					qAnswer.enqueue(qSubqCopy2);
+				}
+			}else {
+				
+				for(int i = 0;i<size;i++) {
+					QueueArray<Character> qSubqCopy2 = new QueueArray<>(27);
+					QueueArray<Character> qSubqCopy3 = new QueueArray<>(27);
+					qSubqCopy2.clone(qAnswer.dequeue());
+					qSubqCopy3.clone(qSubqCopy2);
+					
+					qSubqCopy3.eliminate(c);
+					qSubqCopy3.enqueue(c);
+					qAnswer.enqueue(qSubqCopy2);
+					qAnswer.enqueue(qSubqCopy3);
+				}
+			}
+			
+		}
+		
+		
+		while(!qAnswer.empty()) {
+			System.out.println(qAnswer.dequeue());
+		}
+		
+
+	}
+
+}

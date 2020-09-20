@@ -1,0 +1,57 @@
+package PilasyColas;
+import java.util.Scanner;
+
+public class FunGames {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		
+		Scanner sc = new Scanner(System.in);
+		String str = sc.nextLine();
+		QueueArray<Character> qResultado = new QueueArray<>(27);
+		QueueArray<Character> qOriginal = new QueueArray<>(str.length());
+		QueueArray<Character> qSubOriginal = new QueueArray<>(str.length());
+		QueueArray<String> qRespuesta = new QueueArray<>(50);
+		
+		StackArrayGeneric<Character> s = new StackArrayGeneric<>(str.length());
+		
+		//int subCheck = 0;
+		int tamMin=0;
+		
+		for(int i =0; i<str.length();i++) {
+			Character c = new Character(str.toCharArray()[i]);
+			qOriginal.enqueue(c);
+		}
+		
+		while(!qOriginal.empty()) {
+			
+			
+			qSubOriginal.clone(qOriginal);
+			
+			//qResultado.enqueue(qOriginal.dequeue());
+			while(!qSubOriginal.empty()) {
+				if(qResultado.existChar(qSubOriginal.peek())) {
+					qSubOriginal.dequeue();
+				}else
+					qResultado.enqueue(qSubOriginal.dequeue());
+			}
+			
+			String sResultado = qResultado.toString();
+			if(sResultado.length()>= tamMin) {
+				qRespuesta.enqueue(sResultado);
+				tamMin = sResultado.length();	
+			}
+			
+			qResultado.clear(27);
+			qOriginal.dequeue();
+			
+		}
+		
+		while(!qRespuesta.empty()) {
+			System.out.println(qRespuesta.dequeue());
+		}
+		
+
+	}
+
+}
